@@ -28,6 +28,14 @@ def get_url():
                 'title': info.get('title'),
                 'directUrl': selected['url']
             })
+
+    except yt_dlp.utils.DownloadError as e:
+        error_message = str(e)
+        if "Video unavailable" in error_message:
+            return jsonify({'error': 'Video unavailable, it may be private, removed, or blocked in your region.'}), 404
+        else:
+            return jsonify({'error': error_message}), 500
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
