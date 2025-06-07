@@ -32,5 +32,5 @@ def get_url():
         return jsonify({'error': str(e)}), 500
 
 @app.route('/')
-def index():
-    return 'yt-dlp backend is running.'
+def home():
+    return 'YouTube Extractor API is running.'
